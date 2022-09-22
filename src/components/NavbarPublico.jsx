@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const NavbarPublico = () => {
   const { auth } = useContext(AuthContext);
 
   return (
@@ -35,50 +35,6 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                aria-current="page"
-                to="/register"
-              >
-                Registro
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                aria-current="page"
-                to="/login"
-              >
-                Login
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                aria-current="page"
-                to="/products"
-              >
-                Products
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                aria-current="page"
-                to="/cart"
-              >
-                Carrito
-              </NavLink>
-            </li>
           </ul>
           <div className="">
             <ul className="navbar-nav mb-2 mb-lg-0">
@@ -94,17 +50,26 @@ const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a className="dropdown-item" href="/">
-                      Action
-                    </a>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "dropdown-item active" : "dropdown-item"
+                      }
+                      aria-current="page"
+                      to="/login"
+                    >
+                      Login
+                    </NavLink>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "dropdown-item active" : "dropdown-item"
+                      }
+                      aria-current="page"
+                      to="/register"
+                    >
+                      Registro
+                    </NavLink>
                   </li>
                 </ul>
               </li>
@@ -116,4 +81,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarPublico;

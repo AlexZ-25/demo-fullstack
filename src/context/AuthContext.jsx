@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useCallback, useState } from "react";
 import {
   loginService,
   signupService,
@@ -42,7 +42,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("token", data.token);
   };
 
-  const verifyingToken = async () => {
+  const verifyingToken = useCallback(async () => {
+    console.log('Ejecutando....')
     const token = localStorage.getItem("token");
     if (token) {
       const resp = await verifyingTokenService();
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }) => {
         authStatus: false,
       });
     }
-  };
+  },[]);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -77,10 +78,12 @@ export const AuthProvider = ({ children }) => {
       password: null,
       authStatus: false,
     });
-  }
+  };
 
   return (
-    <AuthContext.Provider value={{ auth, login, signup, verifyingToken, logout }}>
+    <AuthContext.Provider
+      value={{ auth, login, signup, verifyingToken, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

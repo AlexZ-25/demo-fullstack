@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const NavbarPrivado = () => {
   const { auth, logout } = useContext(AuthContext);
-
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
       <div className="container">
@@ -40,43 +39,9 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
-                aria-current="page"
-                to="/profile"
-              >
-                Perfil
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                aria-current="page"
-                to="/register"
-              >
-                Registro
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                aria-current="page"
-                to="/login"
-              >
-                Login
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-                aria-current="page"
                 to="/products"
               >
-                Products
+                Productos
               </NavLink>
             </li>
             <li className="nav-item">
@@ -84,7 +49,6 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
-                aria-current="page"
                 to="/cart"
               >
                 Carrito
@@ -101,13 +65,18 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {!auth.username ? "cuenta" : auth.username}
+                  {auth.username}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a className="dropdown-item" href="/">
-                      Action
-                    </a>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "dropdown-item active" : "dropdown-item"
+                      }
+                      to="/profile"
+                    >
+                      Perfil
+                    </NavLink>
                   </li>
                   <li>
                     <a className="dropdown-item" href="/">
@@ -118,7 +87,9 @@ const Navbar = () => {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <button className="dropdown-item" onClick={logout}>Logout</button>
+                    <button className="dropdown-item" onClick={logout}>
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </li>
@@ -130,4 +101,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarPrivado;

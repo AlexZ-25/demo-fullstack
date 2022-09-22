@@ -1,9 +1,11 @@
 import React from "react";
+import ProductList from "../components/ProductList";
 import Title from "../components/Title";
 
 const HomePage = () => {
   return (
     <>
+      {/* <ProductList/> */}
       <Title titulo="Pagina de inicio" />
       <main className="row pt-5">
         <article className="col">
